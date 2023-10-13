@@ -73,8 +73,17 @@ const App = () => {
       setNotification(null);
       setNotificationCode(0);
     }, 5000);
-    })}
-  };
+    })
+    .catch(error => {
+      setNotificationCode(2);
+      setNotification(` ${error.response.data.error}`);
+      setTimeout(() => {
+        setNotification(null);
+        setNotificationCode(0);
+      }, 5000);
+      console.log((error.response.data.error))
+    })
+  }};
 
   const handleNewPerson = (event) => {
     setNewName(event.target.value);
